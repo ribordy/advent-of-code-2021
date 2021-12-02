@@ -1,4 +1,5 @@
 import computeLocation from "./computeLocation";
+import computeLocationWithAngle from "./computeLocationWithAngle";
 import readLines from "../readLines";
 import { resolve } from 'path';
 
@@ -7,6 +8,8 @@ import { resolve } from 'path';
     const lines = await readLines(resolve(__dirname, './input-a.txt'));
 
     const location = computeLocation(lines);
+    const locationViaAngle = computeLocationWithAngle(lines);
 
     console.log(location);
+    console.log(locationViaAngle);
 })();
