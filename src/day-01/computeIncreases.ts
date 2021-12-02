@@ -1,12 +1,13 @@
-import { readFile } from 'fs';
+import readLines from '../readLines';
 import { resolve } from 'path';
 
-let increases = 0;
-let threeElementIncreases = 0;
-readFile(resolve(__dirname, './input-a.txt'), function(err, data) {
-    if(err) throw err;
+(async () => {
+    let increases = 0;
+    let threeElementIncreases = 0;
 
-    const arr = data.toString().replace(/\r\n/g,'\n').split('\n').map(i => parseInt(i, 10));
+    const lines = await readLines(resolve(__dirname, './input-a.txt'));
+
+    const arr = lines.map((i: string) => parseInt(i, 10));
 
     for(let i = 0; i < arr.length - 1; i++) {
         if(arr[i] < arr[i+1]) {
@@ -21,4 +22,4 @@ readFile(resolve(__dirname, './input-a.txt'), function(err, data) {
         }
     }
     console.log(threeElementIncreases);
-});
+})();
