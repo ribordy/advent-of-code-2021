@@ -5,7 +5,6 @@ const computePowerConsumption = (binaryStrings: string[]) : { gamma: string, eps
         const positionSum = binaryStrings.reduce<number>((previousValue, currentValue) : number => {
             return previousValue + parseInt(currentValue[i], 10);
         }, 0);
-        console.log(positionSum);
         const nextDigit = Math.round(positionSum / binaryStrings.length);
         gamma += nextDigit.toString();
     }
