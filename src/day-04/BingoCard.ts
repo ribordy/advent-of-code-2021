@@ -33,12 +33,19 @@ class BingoCard {
     }
 
     private winResultedFromMarkingSpace(rowIndex: number, colIndex: number) {
-        if(this.rows[rowIndex].every(space => space.drawn)) {
+        if (this.rows[rowIndex].every(space => space.drawn)) {
             return true;
         }
 
-        if(this.rows.every(row => row[colIndex].drawn)) {
-            return true;
+        try {
+            if (this.rows.every(row => row[colIndex].drawn)) {
+                return true;
+            }
+        } catch (e) {
+            console.log(this.printCard())
+            console.log(colIndex);
+            console.log(this.rows);
+            throw(e)
         }
     }
 }
