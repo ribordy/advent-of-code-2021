@@ -6,7 +6,7 @@ type Coordinate = {
 class Grid {
     public grid: GridPoint[][] = []
 
-    public chartLine(from: Coordinate, to: Coordinate) {
+    public chartLine(from: Coordinate, to: Coordinate, considerDiagonals: boolean = false) {
         // only chart vertical and horizontal lines for part A
         if (from.x === to.x) {
             const low = Math.min(from.y, to.y)
@@ -20,6 +20,16 @@ class Grid {
             for (let i = low; i <= high; i++) {
                 this.markPoint(i, from.y);
             }
+        } else if (considerDiagonals && Math.abs(from.x - to.x) === Math.abs(from.y - to.y)) {
+            const xIncrement = (from.x > to.x) ? -1 : 1
+            const yIncrement = (from.y > to.y) ? -1 : 1
+            let currentCoord = { ...from }
+            while (currentCoord.x !== to.x && currentCoord.y !== to.y) {
+                this.markPoint(currentCoord.x, currentCoord.y);
+                currentCoord.x += xIncrement;
+                currentCoord.y += yIncrement;
+            }
+            this.markPoint(currentCoord.x, currentCoord.y);
         }
     }
 
